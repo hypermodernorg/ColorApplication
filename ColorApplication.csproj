@@ -10,28 +10,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BuildWebCompiler" Version="1.12.394" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="5.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.2">
+    <PackageReference Include="BuildWebCompiler" Version="1.12.405" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.2" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.1" />
-    <PackageReference Include="NLog.Extensions.Logging" Version="1.7.0" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="4.10.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="1.7.2" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.12.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +40,47 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="wwwroot\scss\forms\_floating-labels.scss" />
+    <None Include="wwwroot\scss\forms\_form-check.scss" />
+    <None Include="wwwroot\scss\forms\_form-control.scss" />
+    <None Include="wwwroot\scss\forms\_form-range.scss" />
+    <None Include="wwwroot\scss\forms\_form-select.scss" />
+    <None Include="wwwroot\scss\forms\_form-text.scss" />
+    <None Include="wwwroot\scss\forms\_input-group.scss" />
+    <None Include="wwwroot\scss\forms\_labels.scss" />
+    <None Include="wwwroot\scss\forms\_validation.scss" />
+    <None Include="wwwroot\scss\helpers\_clearfix.scss" />
+    <None Include="wwwroot\scss\helpers\_colored-links.scss" />
+    <None Include="wwwroot\scss\helpers\_position.scss" />
+    <None Include="wwwroot\scss\helpers\_ratio.scss" />
+    <None Include="wwwroot\scss\helpers\_stretched-link.scss" />
+    <None Include="wwwroot\scss\helpers\_text-truncation.scss" />
+    <None Include="wwwroot\scss\helpers\_visually-hidden.scss" />
+    <None Include="wwwroot\scss\mixins\_alert.scss" />
+    <None Include="wwwroot\scss\mixins\_border-radius.scss" />
+    <None Include="wwwroot\scss\mixins\_box-shadow.scss" />
+    <None Include="wwwroot\scss\mixins\_breakpoints.scss" />
+    <None Include="wwwroot\scss\mixins\_buttons.scss" />
+    <None Include="wwwroot\scss\mixins\_caret.scss" />
+    <None Include="wwwroot\scss\mixins\_clearfix.scss" />
+    <None Include="wwwroot\scss\mixins\_container.scss" />
+    <None Include="wwwroot\scss\mixins\_deprecate.scss" />
+    <None Include="wwwroot\scss\mixins\_forms.scss" />
+    <None Include="wwwroot\scss\mixins\_gradients.scss" />
+    <None Include="wwwroot\scss\mixins\_grid.scss" />
+    <None Include="wwwroot\scss\mixins\_image.scss" />
+    <None Include="wwwroot\scss\mixins\_list-group.scss" />
+    <None Include="wwwroot\scss\mixins\_lists.scss" />
+    <None Include="wwwroot\scss\mixins\_pagination.scss" />
+    <None Include="wwwroot\scss\mixins\_reset-text.scss" />
+    <None Include="wwwroot\scss\mixins\_resize.scss" />
+    <None Include="wwwroot\scss\mixins\_table-variants.scss" />
+    <None Include="wwwroot\scss\mixins\_text-truncate.scss" />
+    <None Include="wwwroot\scss\mixins\_transition.scss" />
+    <None Include="wwwroot\scss\mixins\_utilities.scss" />
+    <None Include="wwwroot\scss\mixins\_visually-hidden.scss" />
+    <None Include="wwwroot\scss\utilities\_api.scss" />
+    <None Include="wwwroot\scss\vendor\_rfs.scss" />
   </ItemGroup>
 
   <ItemGroup>
