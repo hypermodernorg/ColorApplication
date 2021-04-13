@@ -49,12 +49,8 @@ namespace ColorApplication
                 // Rewrite to index
                 if (url == "" || url == "/")
                 {
-                    
-
-                  
                         context.Request.Path = "/colorpallets/index/";
-                
-
+               
                 }
 
                 await next();
@@ -77,7 +73,7 @@ namespace ColorApplication
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "colorpallets",
-                    pattern: "{controller=colorpallets}/{action=Index}/{id?}");
+                    pattern: "{controller=ColorPallets}/{action=Index}/{id?}");
             });
         }
     }

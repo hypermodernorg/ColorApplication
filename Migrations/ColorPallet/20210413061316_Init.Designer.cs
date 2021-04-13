@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ColorApplication.Migrations.ColorPallet
 {
     [DbContext(typeof(ColorPalletContext))]
-    [Migration("20210405010402_inti")]
-    partial class inti
+    [Migration("20210413061316_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.4");
+                .HasAnnotation("ProductVersion", "5.0.5");
 
             modelBuilder.Entity("ColorApplication.Models.ColorPallet", b =>
                 {
@@ -27,10 +27,10 @@ namespace ColorApplication.Migrations.ColorPallet
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsCopy")
+                    b.Property<int>("IsCopy")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("IsPublic")
+                    b.Property<int>("IsPublic")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")

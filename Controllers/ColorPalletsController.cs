@@ -7,22 +7,72 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ColorApplication.Data;
 using ColorApplication.Models;
+using System.Text.Json;
+using ColorApplication.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
+using System.Web;
 
 namespace ColorApplication.Controllers
 {
     public class ColorPalletsController : Controller
     {
         private readonly ColorPalletContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ColorPalletsController(ColorPalletContext context)
+        public ColorPalletsController(ColorPalletContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: ColorPallets
         public async Task<IActionResult> Index()
         {
             return View(await _context.ColorPallet.ToListAsync());
+        }
+
+        public string ReturnId(Guid palletId)
+        {
+            return JsonSerializer.Serialize(palletId);
+        }
+
+        // Save Pallet: Called from javacript function SavePallet via ajax.
+        [HttpPost]
+        public string SavePallets(string PalletId, string [] Colors, string PalletName, string PalletDescription, int PalletIsPublic, int PalletIsCopy)
+        {
+            string theUserID = _userManager.GetUserId(User);
+            string colorStrings = String.Join('|', Colors);
+            ColorPallet colorPallet = new();
+            if (theUserID != null)
+            {
+                colorPallet.UId = Guid.Parse(theUserID);
+            }
+
+            colorPallet.Name = PalletName;
+            colorPallet.Pallet = colorStrings;
+            colorPallet.Description = PalletDescription;
+            colorPallet.IsPublic = PalletIsPublic;
+            colorPallet.IsCopy = PalletIsCopy;
+
+            if (ModelState.IsValid)
+            {
+                // Ff null, it is a guest and not allowed to save pallets.
+                // Guest must make an account for this feature.
+                if (theUserID != null) {
+                    if (PalletId == null)
+                    {
+                        colorPallet.Id = Guid.NewGuid();
+                        _context.Add(colorPallet);
+                    }
+                    else
+                    {
+                        colorPallet.Id = Guid.Parse(PalletId);
+                        _context.Update(colorPallet);
+                    }
+                   _context.SaveChangesAsync();
+                }
+            }
+            return JsonSerializer.Serialize(colorPallet.Id);
         }
 
         // GET: ColorPallets/Details/5

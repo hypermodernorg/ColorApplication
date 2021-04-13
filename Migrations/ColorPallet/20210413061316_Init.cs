@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ColorApplication.Migrations.ColorPallet
 {
-    public partial class inti : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,8 +16,8 @@ namespace ColorApplication.Migrations.ColorPallet
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
                     Pallet = table.Column<string>(type: "TEXT", nullable: true),
-                    IsPublic = table.Column<bool>(type: "INTEGER", nullable: false),
-                    IsCopy = table.Column<bool>(type: "INTEGER", nullable: false)
+                    IsPublic = table.Column<int>(type: "INTEGER", nullable: false),
+                    IsCopy = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

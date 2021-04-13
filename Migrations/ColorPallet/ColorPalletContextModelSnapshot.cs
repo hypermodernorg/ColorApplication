@@ -14,7 +14,7 @@ namespace ColorApplication.Migrations.ColorPallet
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.4");
+                .HasAnnotation("ProductVersion", "5.0.5");
 
             modelBuilder.Entity("ColorApplication.Models.ColorPallet", b =>
                 {
@@ -25,10 +25,10 @@ namespace ColorApplication.Migrations.ColorPallet
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsCopy")
+                    b.Property<int>("IsCopy")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("IsPublic")
+                    b.Property<int>("IsPublic")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")

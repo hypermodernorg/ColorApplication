@@ -18,23 +18,8 @@ namespace ColorApplication.Models
         public Guid UId { get; set; } // Key to User
         public string Name { get; set; }
         public string Description { get; set; }
-
-        public string Pallet { get; set; } // Store as JSON
-
-        [NotMapped]
-        public List<SingleColor> Colors { get; set; }
-
-        public bool IsPublic {get; set;}
-        public bool IsCopy { get; set; }
-    }
-
-    [NotMapped]
-    public class SingleColor
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-
-        [Required]
-        public string CHexA { get; set; }
+        public string Pallet { get; set; }
+        public int IsPublic {get; set;}
+        public int IsCopy { get; set; }
     }
 }

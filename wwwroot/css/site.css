@@ -1,1 +1,45 @@
-﻿
+﻿.colorInput {
+    width: 100%;
+    height: 200px;
+
+}
+.smallColor {
+   
+    height: 10px;
+    
+}
+.smallPallet {
+ 
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    background: #525252;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+    .slider:hover {
+        opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 10px;
+        height: 10px;
+        background: #E4E4E4;
+        cursor: pointer;
+        
+    }
+
+    .slider::-moz-range-thumb {
+        width: 10px;
+        height: 10px;
+        background: #E4E4E4;
+        cursor: pointer;
+    }
