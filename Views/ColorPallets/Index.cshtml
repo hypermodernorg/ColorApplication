@@ -2,463 +2,134 @@
 
 @{
     ViewData["Title"] = "Index";
-}
-
-<script>
-    function convertColor(Elem) {
-        color = document.getElementById(Elem).value;
-        color = color.toLowerCase();
-        c = w3color(color);
-        let spaces = ['cInput', 'colorInputId'];
-       
-        if (c.valid) {
-            for (var space of spaces) {
-                if (space != Elem) {
-                   
-                    if ((color.indexOf("rgba") > -1 || color.indexOf("hsla") > -1 || color.indexOf("hwba") > -1 || color.indexOf("ncola")) > -1
-                        || (color.indexOf("cmyk") == -1 && color.split(",").length == 4)
-                        || (color.indexOf("cmyk") > -1 && color.split(",").length == 5)) {
-                        /*  document.getElementById("rgb01").innerHTML = c.toRgbaString();*/
-                        //document.getElementById("hsl01").innerHTML = c.toHslaString();
-                        //document.getElementById("hsl01").value = c.toHslaString();
-                        //document.getElementById("colorInputId").value = c.toHslaString();
-                        //document.getElementById(space).value = c.toHslaString();
-
-                        if (space = "colorInputId") {
-                            document.getElementById(space).value = c.toHexString();
-                        }
-                        if (space = "cInput") {
-                            document.getElementById(space).value = c.toHexString().toUpperCase();
-                        }
-                        //document.getElementById("hwb01").innerHTML = c.toHwbaString();
-                        //document.getElementById("ncol01").innerHTML = c.toNcolaString();
-                        //document.getElementById("helprgb01").innerHTML = "Rgba";
-                        //document.getElementById("helphsl01").innerHTML = "Hsla";
-                        //document.getElementById("helphwb01").innerHTML = "Hwba";
-                    } else {
-                        //document.getElementById("rgb01").innerHTML = c.toRgbString();
-                        //document.getElementById("hsl01").innerHTML = c.toHslString();
-                        //document.getElementById("hsl01").value = c.toHslString();
-                        //document.getElementById("colorInputId").value = c.toHslString();
-                        if (space = "colorInputId") {
-                            document.getElementById(space).value = c.toHexString();
-                        }
-                        if (space = "cInput") {
-                            document.getElementById(space).value = c.toHexString().toUpperCase();
-                        }
-                        
-                        //document.getElementById("hwb01").innerHTML = c.toHwbString();
-                        //document.getElementById("ncol01").innerHTML = c.toNcolString();
-                        //document.getElementById("helprgb01").innerHTML = "<a href='colors_rgb.asp?color=" + c.toRgbString() + "'>Rgb</a>";
-                        //document.getElementById("helphsl01").innerHTML = "<a href='colors_hsl.asp?color=" + c.toHslStringDecimal() + "'>Hsl</a>";
-                        //document.getElementById("helphwb01").innerHTML = "<a href='colors_hwb.asp?color=" + c.toHwbStringDecimal() + "'>Hwb</a>";
-                    }
-                }
+    var id = ViewData["ID"];
+    ColorPallet x = new ColorPallet();
+    string checkedA = "";
+    string checkedB = "";
+    if (id != null)
+    {
+        foreach (var item in Model)
+        {
+            if (item.Id.ToString() == id.ToString())
+            {
+                x = item;
             }
         }
-
-
-        //if (color == "") {
-        //    validateColor();
-        //    return;
-        //}
-        
-        //document.getElementsByTagName("h1")[0].style.color = w3color(color).toRgbString();
-        
-        //if (c.valid) {
-        //    //document.getElementById("resultTable").style.display = "table";
-        //    //document.getElementById("error01").innerHTML = "";
-        //    //document.getElementById("result01").style.backgroundColor = c.toRgbaString();
-        //    if (c.toName() == "") {
-        //        //document.getElementById("name01").style.fontStyle = "italic";
-        //        //document.getElementById("name01").style.color = "#757575";
-        //        //document.getElementById("name01").innerHTML = "no name";
-        //    } else {
-        //        //document.getElementById("name01").style.fontStyle = "normal";
-        //        //document.getElementById("name01").style.color = "#000000";
-        //        //document.getElementById("name01").innerHTML = c.toName();
-        //    }
-
-            //if ((color.indexOf("rgba") > -1 || color.indexOf("hsla") > -1 || color.indexOf("hwba") > -1 || color.indexOf("ncola")) > -1
-            //    || (color.indexOf("cmyk") == -1 && color.split(",").length == 4)
-            //    || (color.indexOf("cmyk") > -1 && color.split(",").length == 5)) {
-            //  /*  document.getElementById("rgb01").innerHTML = c.toRgbaString();*/
-            //    //document.getElementById("hsl01").innerHTML = c.toHslaString();
-            //    //document.getElementById("hsl01").value = c.toHslaString();
-            //    //document.getElementById("hwb01").innerHTML = c.toHwbaString();
-            //    //document.getElementById("ncol01").innerHTML = c.toNcolaString();
-            //    //document.getElementById("helprgb01").innerHTML = "Rgba";
-            //    //document.getElementById("helphsl01").innerHTML = "Hsla";
-            //    //document.getElementById("helphwb01").innerHTML = "Hwba";
-            //} else {
-            //    //document.getElementById("rgb01").innerHTML = c.toRgbString();
-            //    //document.getElementById("hsl01").innerHTML = c.toHslString();
-            //    //document.getElementById("hsl01").value = c.toHslString();
-            //    //document.getElementById("hwb01").innerHTML = c.toHwbString();
-            //    //document.getElementById("ncol01").innerHTML = c.toNcolString();
-            //    //document.getElementById("helprgb01").innerHTML = "<a href='colors_rgb.asp?color=" + c.toRgbString() + "'>Rgb</a>";
-            //    //document.getElementById("helphsl01").innerHTML = "<a href='colors_hsl.asp?color=" + c.toHslStringDecimal() + "'>Hsl</a>";
-            //    //document.getElementById("helphwb01").innerHTML = "<a href='colors_hwb.asp?color=" + c.toHwbStringDecimal() + "'>Hwb</a>";
-            //}
-
-            //document.getElementById("linktocp").innerHTML = "<hr style='border-color:#dfdfdf'><p><a href='colors_picker.asp?color=" + c.toHexString().substr(1) + "'>Use this color in our Color Picker</a></p>";
-
-        //} else {
-        //    //validateColor();
-        //}
     }
-    function validateColor() {
-        var color, c, x, i, l;
-        color = document.getElementById("color01").value;
-        c = w3color(color);
-        if (color == "" || !c.valid) {
-            //document.getElementById("result01").style.backgroundColor = "#f1f1f1";
-            //document.getElementById("resultTable").style.display = "none";
-            //document.getElementById("error01").innerHTML = "Not a legal color value";
-            //document.getElementById("hex01").innerHTML = "";
-            //document.getElementById("rgb01").innerHTML = "";
-            //document.getElementById("hsl01").innerHTML = "";
-            //document.getElementById("hwb01").innerHTML = "";
-            //document.getElementById("ncol01").innerHTML = "";
-            //document.getElementById("helpname01").innerHTML = "";
-            //document.getElementById("helphex01").innerHTML = "";
-            //document.getElementById("helprgb01").innerHTML = "";
-            //document.getElementById("helphsl01").innerHTML = "";
-            //document.getElementById("helphwb01").innerHTML = "";
-            //document.getElementById("helpncol01").innerHTML = "";
-        } else {
-            //document.getElementById("resultTable").style.display = "table";
-            //document.getElementById("error01").innerHTML = "";
-
-            convertColor();
-        }
-    }
-    function submitOnEnter(e) {
-        keyboardKey = e.which || e.keyCode;
-        if (keyboardKey == 13) {
-            validateColor();
-        }
-    }
-
-    //convertColor();
-</script>
-
-
-
+}
 
 <div class="container p-5">
     <div class="row">
         <div class="col-4 p-0 m-0">
-            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">test</a>
-            @*<input type="text" id="textInput" class="form-control bg-dark border-0 text-white" />
-        <input type="text" id="hsl01" class="form-control bg-dark border-0 text-white" />*@
-
-
-            @*<input type="text" class="form-control bg-dark border-0 text-white" aria-label="Sizing example input" id="hsl01">*@
-
-
-
-            @*<a asp-action="Create" class="text-end" title="Add New Pallet"><i class="bi bi-plus-square-fill"></i></a>*@
-            @*<a class="text-white" onclick="NewPallet()"><i class="bi bi-plus-square-fill"></i></a>
-        <span> | </span>
-        <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">test</a>*@
-
 
         </div>
         <div class="col-8"></div>
     </div>
     <div class="row mt-3">
         <div class="col-sm-4  p-0 m-0 mb-3">
-
             <input type="color" id="colorInputId" class="colorInput  border-0 p-0 m-0 mb-3" oninput="convertColor('colorInputId')">
 
             <form class="form-floating mb-3">
-                <input type="text" class="form-control bg-dark text-white border-0" id="cInput" placeholder="" onchange="convertColor('cInput')">
+                <input type="text" class="form-control bg-dark text-white border-0" id="cInput" placeholder="" oninput="convertColor('cInput')">
                 <label class="text-white-50" for="hsl01">RGB, HSL, HSV, CMYK, HEX</label>
             </form>
+
             <div class="text-end">
 
-                <a class="text-white text-end" onclick="SavePallet()"><i class="bi bi-save-fill"></i></a>
-
-                <a class="text-white text-end" onclick="AddToPallet()"><i class="bi bi-plus-square-fill"></i></a>
+                <a class="text-white-50" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">View All Saved Pallets</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="text-white-50 text-end" href="#" onclick="AddToPallet()">Add Color to Pallet</a>
             </div>
-            @*<div class="input-group input-group-sm mt-3">
-            <span class="input-group-text border-0 bg-dark text-white-50" id="inputGroup-sizing-sm">HEX:</span>
-            <input type="text" class="form-control bg-dark border-0 text-white" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
-        <div class="input-group input-group-sm mt-3">
-            <span class="input-group-text border-0 bg-dark text-white-50" id="inputGroup-sizing-sm">HEXA:</span>
-            <input type="text" class="form-control bg-dark border-0 text-white" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-        </div>*@
-        </div>
-        <div class="col-sm-8">
-            <div class="row">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col text-center">
-                            <span class="text-white-50">RGB</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 text-end">
-                            <span class="text-white-50"><small>R</small></span>
-                        </div>
-                        <div class="col-10">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 text-end">
-                            <span class="text-white-50"><small>G</small></span>
-                        </div>
-                        <div class="col-10">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 text-end">
-                            <span class="text-white-50"><small>B</small></span>
-                        </div>
-                        <div class="col-10">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 text-end">
-                            <span class="text-white-50"><small>A</small></span>
-                        </div>
-                        <div class="col-10">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col text-center">
-                            <span class="text-white-50">CMYK</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 text-end">
-                            <span class="text-white-50"><small>C</small></span>
-                        </div>
-                        <div class="col-10">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 text-end">
-                            <span class="text-white-50"><small>M</small></span>
-                        </div>
-                        <div class="col-10">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 text-end">
-                            <span class="text-white-50"><small>Y</small></span>
-                        </div>
-                        <div class="col-10">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 text-end">
-                            <span class="text-white-50"><small>K</small></span>
-                        </div>
-                        <div class="col-10">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-            <div class="row mt-3">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col text-center">
-                            <span class="text-white-50">HSV / HSB</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 text-end">
-                            <span class="text-white-50"><small>H</small></span>
-                        </div>
-                        <div class="col-10">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 text-end">
-                            <span class="text-white-50"><small>S</small></span>
-                        </div>
-                        <div class="col-10">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 text-end">
-                            <span class="text-white-50"><small>V</small></span>
-                        </div>
-                        <div class="col-10">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        </div>
-                    </div>
-                </div>
+        @* Sliders: col-sm-8*@
+        <partial name="_SlidersPartial" />
+   
 
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col text-center">
-                            <span class="text-white-50">HSL</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 text-end">
-                            <span class="text-white-50"><small>H</small></span>
-                        </div>
-                        <div class="col-10">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 text-end">
-                            <span class="text-white-50"><small>S</small></span>
-                        </div>
-                        <div class="col-10">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 text-end">
-                            <span class="text-white-50"><small>L</small></span>
-                        </div>
-                        <div class="col-10">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-            </div>
-
-        </div>
     </div>
     <div class="row mb-5">
-        <div class="col-md-6 border border-1 border-dark p-2" id="activePallet">
+        <div class="col-md-6 border border-1 border-dark p-2 d-flex flex-wrap" id="activePallet">
 
-        </div>
-        <div class="col-md-6">
-
-            <div class="input-group input-group-sm ">
-                <span class="input-group-text border-0 bg-dark text-white-50" id="inputGroup-sizing-sm">Pallet Name</span>
-                <input onchange="SavePallet()" type="text" id="palletName" class="form-control bg-dark border-0 text-white" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-            <div class="input-group input-group-sm mt-3">
-                <span class="input-group-text border-0 bg-dark text-white-50" id="inputGroup-sizing-sm">Description</span>
-                <input onchange="SavePallet()" type="text" id="palletDescription" class="form-control bg-dark border-0 text-white" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-            <div class="form-check form-switch mt-2">
-                <input onchange="SavePallet()" class="form-check-input bg-secondary border-0" type="checkbox" id="palletPublic">
-                <label class="form-check-label text-white-50" for="palletPublic">Make these colors public?</label>
-            </div>
-            <div class="form-check form-switch mt-1">
-                <input onchange="SavePallet()" class="form-check-input bg-secondary border-0" type="checkbox" id="palletCopy">
-                <label class="form-check-label text-white-50" for="palletCopy">Allow people to copy these colors?</label>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="offcanvas offcanvas-start bg-white" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Your Saved Pallets</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div id="SavedOffCanvas" class="offcanvas-body">
-            @foreach (var item in Model)
+            @if (id != null)
             {
-                string[] theColors = item.Pallet.Split('|');
-                <div class="smallPallet border border-1">
-                    <div class="row">
-                        <div class="col">
-                            <h4>Pallet Name: @item.Name</h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        @foreach (var color in theColors)
-                        {
-                            <div class="col smallColor" style="background-color: @color;">
+                var colors = x.Pallet.Split('|');
 
-                            </div>
-                        }
+                foreach (var color in colors)
+                {
 
+                    var rand = new Random();
+                    var r = rand.Next(1000, 10000);
+                    var r2 = 'c' + r.ToString();
+                    var r2d = r2 + 'd';
+
+
+
+                    <div class="dropdown" id="@r2d">
+                        <button type="button" class="btn dropdown-toggle dbutton" id="@r2" data-bs-toggle="dropdown" aria-expanded="false" onclick="SetFocusedColor('@color')" style="background-color: @color">
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="@r2">
+                            <li>
+                                <a href="#" class="dropdown-item" onclick="DeleteColor('@r2d')">Remove Color</a>
+                            </li>
+                        </ul>
                     </div>
-                </div>
+                }
             }
 
 
         </div>
+        <div class="col-md-6">
+
+            @if (id == null)
+            {
+                <div class="input-group input-group-sm ">
+                    <span class="input-group-text border-0 bg-dark text-white-50" id="inputGroup-sizing-sm">Pallet Name</span>
+                    <input onchange="SavePallet()" type="text" id="palletName" class="form-control bg-dark border-0 text-white" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="input-group input-group-sm mt-3">
+                    <span class="input-group-text border-0 bg-dark text-white-50" id="inputGroup-sizing-sm">Description</span>
+                    <input onchange="SavePallet()" type="text" id="palletDescription" class="form-control bg-dark border-0 text-white" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="form-check form-switch mt-2">
+                    <input onchange="SavePallet()" class="form-check-input bg-secondary border-0" type="checkbox" id="palletPublic">
+                    <label class="form-check-label text-white-50" for="palletPublic">Make these colors public?</label>
+                </div>
+                <div class="form-check form-switch mt-1">
+                    <input onchange="SavePallet()" class="form-check-input bg-secondary border-0" type="checkbox" id="palletCopy">
+                    <label class="form-check-label text-white-50" for="palletCopy">Allow people to copy these colors?</label>
+                </div>
+            }
+
+            else
+            {
+                if (x.IsCopy == 1)
+                {
+                    checkedA = "checked";
+                }
+                if (x.IsPublic == 1)
+                {
+                    checkedB = "checked";
+                }
+                <div class="input-group input-group-sm ">
+                    <span class="input-group-text border-0 bg-dark text-white-50" id="inputGroup-sizing-sm">Pallet Name</span>
+                    <input onchange="SavePallet()" type="text" id="palletName" class="form-control bg-dark border-0 text-white" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="@x.Name">
+                </div>
+                <div class="input-group input-group-sm mt-3">
+                    <span class="input-group-text border-0 bg-dark text-white-50" id="inputGroup-sizing-sm">Description</span>
+                    <input onchange="SavePallet()" type="text" id="palletDescription" class="form-control bg-dark border-0 text-white" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="@x.Description">
+                </div>
+                <div class="form-check form-switch mt-2">
+                    <input onchange="SavePallet()" class="form-check-input bg-secondary border-0" type="checkbox" id="palletPublic" @checkedB>
+                    <label class="form-check-label text-white-50" for="palletPublic">Make these colors public?</label>
+                </div>
+                <div class="form-check form-switch mt-1">
+                    <input onchange="SavePallet()" class="form-check-input bg-secondary border-0" type="checkbox" id="palletCopy" @checkedA>
+                    <label class="form-check-label text-white-50" for="palletCopy">Allow people to copy these colors?</label>
+                </div>
+            }
+        </div>
     </div>
+
+    <partial name="_SideBarPartial" />
+
 </div>
-
-
-
-
-
-@*<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pallet)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsPublic)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsCopy)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pallet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsPublic)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsCopy)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>*@

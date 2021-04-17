@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,8 +27,10 @@ namespace ColorApplication.Controllers
         }
 
         // GET: ColorPallets
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Guid? id)
         {
+            ViewData["ID"] = id;
+
             return View(await _context.ColorPallet.ToListAsync());
         }
 
@@ -56,7 +59,7 @@ namespace ColorApplication.Controllers
 
             if (ModelState.IsValid)
             {
-                // Ff null, it is a guest and not allowed to save pallets.
+                // If null, it is a guest and not allowed to save pallets.
                 // Guest must make an account for this feature.
                 if (theUserID != null) {
                     if (PalletId == null)
