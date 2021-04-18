@@ -1,7 +1,7 @@
 ﻿// Notes:
 //      Oninput is not invoked when element is changed from javascript!!
 
-function RGBA() {
+function RGB() {
 
     var color = `rgb(${document.getElementById('rgbar').value}, ${document.getElementById('rgbag').value}, ${document.getElementById('rgbab').value})`;
     c = w3color(color);
@@ -18,11 +18,44 @@ function HSL() {
 
 }
 
+function HWB() {
+    //hwb(120deg, 20%, 20%);
+    //toHwbString: function () {
+    //    return "hwb(" + this.hue + ", " + Math.round(this.whiteness * 100) + "%, " + Math.round(this.blackness * 100) + "%)";
+    //},
+    var color = `hwb(${document.getElementById('hwbh').value}, ${document.getElementById('hwbw').value}%, ${document.getElementById('hwbb').value}%)`;
+    c = w3color(color);
+    document.getElementById('colorInputId').value = c.toHexString();
+    convertColor('HWB');
+
+}
+
+function CMYK() {
+
+    //toCmykString: function () {
+    //    return "cmyk(" + Math.round(this.cyan * 100) + "%, " + Math.round(this.magenta * 100) + "%, " + Math.round(this.yellow * 100) + "%, " + Math.round(this.black * 100) + "%)";
+    //},
+    var color = `cmyk(${document.getElementById('cmykc').value}%, ${document.getElementById('cmykm').value}%, ${document.getElementById('cmyky').value}%, ${document.getElementById('cmykk').value}%)`;
+    c = w3color(color);
+    document.getElementById('colorInputId').value = c.toHexString();
+    convertColor('CMYK');
+
+}
+
+function UserInput() {
+    var color = document.getElementById('userInput').value;
+    c = w3color(color);
+    if (c.valid) {
+        document.getElementById('colorInputId').value = c.toHexString();
+        convertColor('userInput');
+    }
+}
+
 function convertColor(Elem) {
     color = document.getElementById('colorInputId').value;
     color = color.toLowerCase();
     c = w3color(color);
-    let spaces = ['cInput', 'colorInputId', 'RGB', 'HSL'];
+    let spaces = ['userInput', 'colorInputId', 'RGB', 'HSL', 'CMYK', 'HWB'];
 
     if (c.valid) {
         for (var space of spaces) {
@@ -31,8 +64,8 @@ function convertColor(Elem) {
                 if (space = "colorInputId") {
                     document.getElementById(space).value = c.toHexString();
                 }
-                if (space = "cInput") {
-                    document.getElementById(space).value = c.toHexString().toUpperCase();
+                if (space = "userInput") {
+                   // document.getElementById(space).value = c.toHexString().toUpperCase();
                 }
 
                 if (space = "RGB") {
@@ -44,6 +77,17 @@ function convertColor(Elem) {
                     document.getElementById('hslh').value = c.hue;
                     document.getElementById('hsls').value = c.sat * 100;
                     document.getElementById('hsll').value = c.lightness * 100;
+                }
+                if (space = "HWB") {
+                    document.getElementById('hwbh').value = c.hue;
+                    document.getElementById('hwbw').value = c.whiteness * 100;
+                    document.getElementById('hwbb').value = c.blackness * 100;
+                }
+                if (space = "CMYK") {
+                    document.getElementById('cmykc').value = c.cyan * 100;
+                    document.getElementById('cmykm').value = c.magenta * 100;
+                    document.getElementById('cmyky').value = c.yellow * 100;
+                    document.getElementById('cmykk').value = c.black * 100;
                 }
                 //if ((color.indexOf("rgba") > -1 || color.indexOf("hsla") > -1 || color.indexOf("hwba") > -1 || color.indexOf("ncola")) > -1
                 //    || (color.indexOf("cmyk") == -1 && color.split(",").length == 4)
@@ -69,6 +113,11 @@ function convertColor(Elem) {
                 //}
             }
         }
+
+        document.getElementById('rgb-label').innerHTML = c.toRgbString();
+        document.getElementById('hsl-label').innerHTML = c.toHslString();
+        document.getElementById('cmyk-label').innerHTML = c.toCmykString();
+        document.getElementById('hwb-label').innerHTML = c.toHwbString();
     }
 }
 function SavePallet() {
@@ -120,7 +169,7 @@ function SavePallet() {
         },
         dataType: "json",
         success: function (PalletID) {
-            var x = document.getElementById('offcanvasScrolling');
+            var x = document.getElementById('activePallet');
             if (!document.getElementById('palletId')) {
                 var palletId = document.createElement('input');
                 palletId.id = "palletId";

@@ -1,9 +1,9 @@
-﻿<div class="col-sm-8">
+﻿<div class="col-sm-8 mb-3">
     <div class="row">
         <div class="col-6">
             <div class="row">
                 <div class="col text-center">
-                    <span class="text-white-50">RGB</span>
+                    <span class="text-white-50" id="rgb-label">RGB</span>
                 </div>
             </div>
             <div class="row">
@@ -11,7 +11,7 @@
                     <span class="text-white-50"><small>R</small></span>
                 </div>
                 <div class="col-10">
-                    <input type="range" min="0" max="256" value="0" class="slider" id="rgbar" oninput="RGBA()">
+                    <input type="range" min="0" max="256" value="0" class="slider" id="rgbar" oninput="RGB()">
                 </div>
             </div>
             <div class="row">
@@ -19,7 +19,7 @@
                     <span class="text-white-50"><small>G</small></span>
                 </div>
                 <div class="col-10">
-                    <input type="range" min="0" max="256" value="0" class="slider" id="rgbag" oninput="RGBA()">
+                    <input type="range" min="0" max="256" value="0" class="slider" id="rgbag" oninput="RGB()">
                 </div>
             </div>
             <div class="row">
@@ -27,14 +27,14 @@
                     <span class="text-white-50"><small>B</small></span>
                 </div>
                 <div class="col-10">
-                    <input type="range" min="0" max="256" value="0" class="slider" id="rgbab" oninput="RGBA()">
+                    <input type="range" min="0" max="256" value="0" class="slider" id="rgbab" oninput="RGB()">
                 </div>
             </div>
         </div>
         <div class="col-6">
             <div class="row">
                 <div class="col text-center">
-                    <span class="text-white-50">CMYK</span>
+                    <span class="text-white-50"  id="cmyk-label">CMYK</span>
                 </div>
             </div>
             <div class="row">
@@ -42,7 +42,7 @@
                     <span class="text-white-50"><small>C</small></span>
                 </div>
                 <div class="col-10">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <input type="range" min="0" max="100" value="0" class="slider" id="cmykc" oninput="CMYK()">
                 </div>
             </div>
             <div class="row">
@@ -50,7 +50,7 @@
                     <span class="text-white-50"><small>M</small></span>
                 </div>
                 <div class="col-10">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <input type="range" min="0" max="100" value="0" class="slider" id="cmykm" oninput="CMYK()">
                 </div>
             </div>
             <div class="row">
@@ -58,7 +58,7 @@
                     <span class="text-white-50"><small>Y</small></span>
                 </div>
                 <div class="col-10">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <input type="range" min="0" max="100" value="0" class="slider" id="cmyky" oninput="CMYK()">
                 </div>
             </div>
             <div class="row">
@@ -66,7 +66,7 @@
                     <span class="text-white-50"><small>K</small></span>
                 </div>
                 <div class="col-10">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <input type="range" min="0" max="100" value="0" class="slider" id="cmykk" oninput="CMYK()">
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
         <div class="col-6">
             <div class="row">
                 <div class="col text-center">
-                    <span class="text-white-50">HSV / HSB</span>
+                    <span class="text-white-50" id="hwb-label">HWB</span>
                 </div>
             </div>
             <div class="row">
@@ -84,23 +84,23 @@
                     <span class="text-white-50"><small>H</small></span>
                 </div>
                 <div class="col-10">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <input type="range" min="0" max="360" value="0" class="slider" id="hwbh" oninput="HWB()">
                 </div>
             </div>
             <div class="row">
                 <div class="col-2 text-end">
-                    <span class="text-white-50"><small>S</small></span>
+                    <span class="text-white-50"><small>W</small></span>
                 </div>
                 <div class="col-10">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <input type="range" min="0" max="100" value="0" class="slider" id="hwbw" oninput="HWB()">
                 </div>
             </div>
             <div class="row">
                 <div class="col-2 text-end">
-                    <span class="text-white-50"><small>V</small></span>
+                    <span class="text-white-50"><small>B</small></span>
                 </div>
                 <div class="col-10">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <input type="range" min="0" max="100" value="0" class="slider" id="hwbb" oninput="HWB()">
                 </div>
             </div>
         </div>
@@ -108,7 +108,7 @@
         <div class="col-6">
             <div class="row">
                 <div class="col text-center">
-                    <span class="text-white-50">HSL</span>
+                    <span class="text-white-50"  id="hsl-label">HSL</span>
                 </div>
             </div>
             <div class="row">

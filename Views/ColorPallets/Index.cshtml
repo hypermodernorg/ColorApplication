@@ -25,14 +25,10 @@
         </div>
         <div class="col-8"></div>
     </div>
-    <div class="row mt-3">
+    <div class="row ">
         <div class="col-sm-4  p-0 m-0 mb-3">
             <input type="color" id="colorInputId" class="colorInput  border-0 p-0 m-0 mb-3" oninput="convertColor('colorInputId')">
 
-            <form class="form-floating mb-3">
-                <input type="text" class="form-control bg-dark text-white border-0" id="cInput" placeholder="" oninput="convertColor('cInput')">
-                <label class="text-white-50" for="hsl01">RGB, HSL, HSV, CMYK, HEX</label>
-            </form>
 
             <div class="text-end">
 
@@ -48,10 +44,12 @@
 
     </div>
     <div class="row mb-5">
-        <div class="col-md-6 border border-1 border-dark p-2 d-flex flex-wrap" id="activePallet">
-
+        <div class="col-md-6 border border-1 border-dark p-2 d-flex flex-wrap mb-3" id="activePallet">
+            
             @if (id != null)
             {
+                <input type="hidden" id="palletId" value="@id"/>
+
                 var colors = x.Pallet.Split('|');
 
                 foreach (var color in colors)

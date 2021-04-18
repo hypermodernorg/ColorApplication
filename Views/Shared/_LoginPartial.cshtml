@@ -17,8 +17,17 @@
 
     @if (SignInManager.IsSignedIn(User))
     {
-        <li class="nav-item dropdown">
-            <a id="navbarDropdown" href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" title="Manage" aria-expanded="false">@UserManager.GetUserName(User)</a>
+
+        <li class="input-group input-group-sm flex-nowrap">
+
+            <input id="userInput" type="text" class="form-control bg-darkest border-1 border-secondary text-white" placeholder="RGB, HEX, CMYK, HSL, HWB" aria-label="Username" aria-describedby="addon-wrapping" oninput="UserInput()">
+            <span class="input-group-text bg-darkest border-1 border-secondary" id="addon-wrapping"><i class="bi bi-search text-white"></i></span>
+        </li>
+        <li class="nav-item dropdown dropstart">
+
+            @*<a id="navbarDropdown" href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" title="Manage" aria-expanded="false">@UserManager.GetUserName(User)</a>*@
+
+            <a id="navbarDropdown" href="#" class="nav-link" data-bs-toggle="dropdown" role="button" title="Manage" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a id="navbarDropdown" class="dropdown-item" role="button" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account</a></li>
                 @if (roleviewcheck.Succeeded) //AuthorizeAsync(User, "ViewRoles"))
@@ -28,7 +37,7 @@
                 @if (userviewcheck.Succeeded)
                 {
                     <li><a class="dropdown-item" asp-area="Identity" asp-page="/Admin/Users/Index" title="Roles">View Users</a></li>
-                    }
+                }
             </ul>
         </li>
     }
