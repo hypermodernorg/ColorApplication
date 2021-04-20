@@ -16,6 +16,14 @@ function Compliment(color) {
     AddToPallet(c.toHslString());
 }
 
+function Triadic(color) {
+
+}
+
+function Tetradic(color) {
+
+}
+
 
 function DeletePallet(palletID) {
     $.ajax({
