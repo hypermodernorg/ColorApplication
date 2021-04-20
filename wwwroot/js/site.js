@@ -1,6 +1,46 @@
 ﻿// Notes:
 //      Oninput is not invoked when element is changed from javascript!!
 
+function Compliment(color) {
+    c = w3color(color);
+    var hue = c.hue;
+
+    
+    var hue2 = hue - 180;
+    var hue3 = hue2
+    if (hue2 < 0) {
+        var hue3 = 360 + hue2;
+    }
+    c.hue = hue3;
+    
+    AddToPallet(c.toHslString());
+}
+
+
+function DeletePallet(palletID) {
+    $.ajax({
+        type: "POST",
+        url: '/ColorPallets/DeletePallet',
+        data: {
+            PalletID: palletID
+        },
+        dataType: "text",
+        success: function (PalletID) {
+
+            if (document.getElementById('palletId').value == PalletID) {
+                window.location.href = window.location.origin;
+            }
+            
+
+        },
+        error: function (e) {
+            alert('fail');
+        }
+
+    });
+}
+
+
 function RGB() {
 
     var color = `rgb(${document.getElementById('rgbar').value}, ${document.getElementById('rgbag').value}, ${document.getElementById('rgbab').value})`;
@@ -202,10 +242,14 @@ function DeleteColor(divToDelete) {
 
 }
 
-function AddToPallet() {
-
-  
+function AddToPallet(fromColor) {
     var colorToAdd = document.getElementById('colorInputId').value; // Color to add.
+
+    if (fromColor != null) {
+        colorToAdd = fromColor;
+    }
+
+    
    
     var activePallet = document.getElementById('activePallet'); // Color will be added to this pallet.
   
@@ -217,7 +261,7 @@ function AddToPallet() {
 
     // ----- Color Buttons ----- //
     var dropdown = document.createElement("div");
-    dropdown.classList.add('dropdown');
+    dropdown.classList.add('dropdown', 'col-2');
     dropdown.id = randomID + "d";
 
     // Button
@@ -228,7 +272,7 @@ function AddToPallet() {
     dbutton.setAttribute("style", `background-color: ` + colorToAdd);
 
 
-    dbutton.classList.add('btn', 'dropdown-toggle', 'dbutton')
+    dbutton.classList.add('btn', 'w-100', 'dbutton', 'rounded-0')
     dbutton.id = randomID;
     dbutton.type = "button";
     dbutton.setAttribute("data-bs-toggle", "dropdown");
@@ -256,7 +300,8 @@ function AddToPallet() {
     a1.setAttribute("onclick", `DeleteColor('${randomID + 'd'}')`);
     var a2 = document.createElement('a');
     a2.classList.add("dropdown-item");
-    a2.innerText = "test1";
+    a2.setAttribute("onclick", `Compliment('${colorToAdd}')`);
+    a2.innerText = "Add Compliment";
     var a3 = document.createElement('a');
     a3.classList.add("dropdown-item");
     a3.innerText = "test1";

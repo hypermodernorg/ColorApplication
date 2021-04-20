@@ -27,17 +27,43 @@ namespace ColorApplication.Controllers
         }
 
         // GET: ColorPallets
-        public async Task<IActionResult> Index(Guid? id)
+        public IActionResult Index(Guid? id)
         {
             ViewData["ID"] = id;
+    
+            if (User.Identity.IsAuthenticated)
+            {
+                Guid theUserID = Guid.Parse(_userManager.GetUserId(User));
+                var query = $"SELECT * FROM ColorPallet WHERE UId = '{theUserID}';";
+                var x = _context.ColorPallet
+                    .Where(s => s.UId == theUserID)
+                    .ToList();
+                return View(x);
+            }
+            else
+            {
+                return View();
+            }
 
-            return View(await _context.ColorPallet.ToListAsync());
+
+            
         }
 
         public string ReturnId(Guid palletId)
         {
             return JsonSerializer.Serialize(palletId);
         }
+
+        [HttpPost]
+        public async Task<string> DeletePallet(string PalletId)
+        {
+            var colorPallet = await _context.ColorPallet.FindAsync(Guid.Parse(PalletId));
+            _context.ColorPallet.Remove(colorPallet);
+            await  _context.SaveChangesAsync();
+            return PalletId;
+   
+        }
+
 
         // Save Pallet: Called from javacript function SavePallet via ajax.
         [HttpPost]
@@ -170,23 +196,7 @@ namespace ColorApplication.Controllers
             return View(colorPallet);
         }
 
-        // GET: ColorPallets/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var colorPallet = await _context.ColorPallet
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (colorPallet == null)
-            {
-                return NotFound();
-            }
-
-            return View(colorPallet);
-        }
 
         // POST: ColorPallets/Delete/5
         [HttpPost, ActionName("Delete")]

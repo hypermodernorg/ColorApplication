@@ -5,23 +5,27 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div id="SavedOffCanvas" class="offcanvas-body">
-        @foreach (var item in Model)
-        {
-            string[] theColors = item.Pallet.Split('|');
-            <div class="smallPallet mb-3">
-                <a href="/ColorPallets/Index/@item.Id">
+        @if (Model != null) { 
+            foreach (var item in Model)
+            {
+                string[] theColors = item.Pallet.Split('|');
+                <div class="smallPallet mb-3">
+                
                     <div class="row">
-                        <div class="col">
+                        <div class="col-6">
                             @if (item.Name == null)
                             {
-                                <span class="text-dark">Unnamed</span>
+                                <a href="/ColorPallets/Index/@item.Id" class="text-dark">Unnamed</a>
                             }
                             else
                             {
-                                <span class="text-dark">@item.Name</span>
+                                <a href="/ColorPallets/Index/@item.Id" class="text-dark">@item.Name</a>
                             }
-
                         </div>
+                        <div class="col-6 text-end">
+                            <a href="#" class="text-end text-darkest" onclick="DeletePallet('@item.Id')"><i class="bi bi-trash2"></i></a>
+                        </div>
+    
                     </div>
                     <div class="row" id="@item.Id">
                         @foreach (var color in theColors)
@@ -31,8 +35,13 @@
                             </div>
                         }
                     </div>
-                </a>
-            </div>
-        }
+              
+                </div>
+            }
+         }
+        else
+            {
+                <div><h1>Please Login or Create a Free Account to Save Pallets.</h1></div>
+            }
     </div>
 </div>
